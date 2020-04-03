@@ -1,0 +1,14 @@
+C:\Users\Diego\Documents\Codificaciones\Bolillero\BolilleroConsola\bin\Debug\netcoreapp2.0\BolilleroConsola.deps.json
+C:\Users\Diego\Documents\Codificaciones\Bolillero\BolilleroConsola\bin\Debug\netcoreapp2.0\BolilleroConsola.runtimeconfig.json
+C:\Users\Diego\Documents\Codificaciones\Bolillero\BolilleroConsola\bin\Debug\netcoreapp2.0\BolilleroConsola.runtimeconfig.dev.json
+C:\Users\Diego\Documents\Codificaciones\Bolillero\BolilleroConsola\bin\Debug\netcoreapp2.0\BolilleroConsola.dll
+C:\Users\Diego\Documents\Codificaciones\Bolillero\BolilleroConsola\bin\Debug\netcoreapp2.0\BolilleroConsola.pdb
+C:\Users\Diego\Documents\Codificaciones\Bolillero\BolilleroConsola\bin\Debug\netcoreapp2.0\Bolillero.dll
+C:\Users\Diego\Documents\Codificaciones\Bolillero\BolilleroConsola\bin\Debug\netcoreapp2.0\Bolillero.pdb
+C:\Users\Diego\Documents\Codificaciones\Bolillero\BolilleroConsola\obj\Debug\netcoreapp2.0\BolilleroConsola.csprojAssemblyReference.cache
+C:\Users\Diego\Documents\Codificaciones\Bolillero\BolilleroConsola\obj\Debug\netcoreapp2.0\BolilleroConsola.csproj.CoreCompileInputs.cache
+C:\Users\Diego\Documents\Codificaciones\Bolillero\BolilleroConsola\obj\Debug\netcoreapp2.0\BolilleroConsola.AssemblyInfoInputs.cache
+C:\Users\Diego\Documents\Codificaciones\Bolillero\BolilleroConsola\obj\Debug\netcoreapp2.0\BolilleroConsola.AssemblyInfo.cs
+C:\Users\Diego\Documents\Codificaciones\Bolillero\BolilleroConsola\obj\Debug\netcoreapp2.0\BolilleroConsola.csproj.CopyComplete
+C:\Users\Diego\Documents\Codificaciones\Bolillero\BolilleroConsola\obj\Debug\netcoreapp2.0\BolilleroConsola.dll
+C:\Users\Diego\Documents\Codificaciones\Bolillero\BolilleroConsola\obj\Debug\netcoreapp2.0\BolilleroConsola.pdb
