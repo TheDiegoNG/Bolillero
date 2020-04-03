@@ -21,6 +21,7 @@ namespace BolilleroConsola
                 Console.WriteLine(jugada[i]);
             }
 
+            Console.WriteLine(bolillero.sacarBolilla());
 
         }
     }
