@@ -31,7 +31,7 @@ namespace BolilleroBiblioteca
 
         public bool verificarJugada(List<int> jugada, List<int> jugada2)
         {
-            if (jugada == jugada2)
+            if (jugada.SequenceEqual(jugada2))
             {
                 return true;
             }
