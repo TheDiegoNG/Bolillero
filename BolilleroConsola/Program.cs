@@ -15,6 +15,9 @@ namespace BolilleroConsola
 
             bolillero.llenarBolillero();
 
+            Console.Write("Ingrese la cantidad de bolillas en una Jugada");
+            bolillero.lengJugada = Convert.ToInt32(Console.ReadLine());
+
             List<int> jugada = bolillero.sacarJugada();
 
             Console.WriteLine("Jugada:");
