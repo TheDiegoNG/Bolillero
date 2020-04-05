@@ -24,17 +24,24 @@ namespace BolilleroConsola
                 Console.WriteLine(jugada[i]);
             }
 
-            bolillero.llenarBolillero();
+            bolillero.regresarBolillasSacadas();
 
             Console.WriteLine("Bolilla:");
 
             Console.WriteLine(bolillero.sacarBolilla());
 
-            bolillero.llenarBolillero();
+            bolillero.regresarBolillasSacadas();
 
             Console.Write("Ingrese la cantidad de veces a jugar:");
             int vecesAJugar = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Cantidad de veces que la jugada salió: {0}", bolillero.jugarNVeces(jugada, vecesAJugar));
+
+            bolillero.regresarBolillasSacadas();
+
+            for (int i = 0; i < bolillero.bolillasLista.Count; i++)
+            {
+                Console.WriteLine(bolillero.bolillasLista[i]);
+            }
 
         }
     }
