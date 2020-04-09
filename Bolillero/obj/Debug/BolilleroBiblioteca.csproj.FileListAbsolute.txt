@@ -1,5 +1,0 @@
-C:\Users\Diego\Documents\Codificaciones\Bolillero\Bolillero\bin\Debug\Bolillero.dll
-C:\Users\Diego\Documents\Codificaciones\Bolillero\Bolillero\bin\Debug\Bolillero.pdb
-C:\Users\Diego\Documents\Codificaciones\Bolillero\Bolillero\obj\Debug\BolilleroBiblioteca.csproj.CoreCompileInputs.cache
-C:\Users\Diego\Documents\Codificaciones\Bolillero\Bolillero\obj\Debug\Bolillero.dll
-C:\Users\Diego\Documents\Codificaciones\Bolillero\Bolillero\obj\Debug\Bolillero.pdb
