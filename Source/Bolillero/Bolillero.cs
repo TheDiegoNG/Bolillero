@@ -25,6 +25,7 @@ namespace BolilleroBiblioteca
             bolillasSacadas = new List<int>();
             cantBolillas = cantBolas;
             lengJugada = largJugada;
+            llenarBolillero();
         }
 
         public void llenarBolillero()
