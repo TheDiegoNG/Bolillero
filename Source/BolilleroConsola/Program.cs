@@ -8,15 +8,16 @@ namespace BolilleroConsola
     {
         static void Main(string[] args)
         {
-            Bolillero bolillero = new Bolillero();
 
             Console.Write("Ingrese la cantidad de bolillas que tiene el bolillero:");
-            bolillero.cantBolillas = Convert.ToInt32(Console.ReadLine());
+            int cantBolillas = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Ingrese la cantidad de bolillas en una Jugada: ");
+            int lengJugada = Convert.ToInt32(Console.ReadLine());
+
+            Bolillero bolillero = new Bolillero(cantBolillas, lengJugada);
 
             bolillero.llenarBolillero();
-
-            Console.Write("Ingrese la cantidad de bolillas en una Jugada");
-            bolillero.lengJugada = Convert.ToInt32(Console.ReadLine());
 
             List<int> jugada = bolillero.sacarJugada();
 

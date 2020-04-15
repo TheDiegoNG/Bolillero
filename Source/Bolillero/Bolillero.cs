@@ -19,10 +19,12 @@ namespace BolilleroBiblioteca
 
         Random numRand = new Random();
 
-        public Bolillero()
+        public Bolillero(int cantBolas, int largJugada)
         {
             bolillasLista = new List<int>();
             bolillasSacadas = new List<int>();
+            cantBolillas = cantBolas;
+            lengJugada = largJugada;
         }
 
         public void llenarBolillero()
