@@ -6,7 +6,7 @@ using System.Text;
 namespace BolilleroBiblioteca
 
 {
-    public class Bolillero
+    public class Bolillero : ICloneable
     {
 
         public List<int> bolillasLista { get; set; }
@@ -77,5 +77,9 @@ namespace BolilleroBiblioteca
             }
             return vecesJugada;
         }
+
+        public object Clone() => new Bolillero(cantBolillas, lengJugada);
+
+
     }
 }
