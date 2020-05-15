@@ -21,11 +21,17 @@ namespace BolilleroBiblioteca
         public int simularConHilos(Bolillero bolillero, List<int> jugada, int cantidadSimulaciones, int cantidadHilos)
         {
             Task<int>[] tareas = new Task<int>[cantidadHilos];
-                  
-            for (int i = 0; i < cantidadHilos; i++)
+
+            int simResto = cantidadSimulaciones % cantidadHilos;
+            int simulacionesPorHilo = Convert.ToInt32(cantidadSimulaciones / cantidadHilos);
+
+            Bolillero clonResto = (Bolillero)bolillero.Clone();
+            tareas[0] = Task.Run(() => clonResto.jugarNVeces(jugada, simulacionesPorHilo + simResto));
+
+            for (int i = 1; i < cantidadHilos; i++)
             {
                 Bolillero clon = (Bolillero)bolillero.Clone();
-                tareas[i] = new Task<int>(() => clon.jugarNVeces(jugada, cantidadSimulaciones / cantidadHilos));
+                tareas[i] = Task.Run(() => clon.jugarNVeces(jugada, simulacionesPorHilo));
             }
 
             Array.ForEach(tareas, t => t.Start());
