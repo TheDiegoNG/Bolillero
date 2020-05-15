@@ -21,36 +21,45 @@ namespace BolilleroConsola
 
             List<int> jugada = bolillero.sacarJugada();
 
-            //Console.WriteLine("Jugada:");
+            Console.WriteLine("Jugada:");
 
-            //for (int i = 0; i < 7; i++)
+            for (int i = 0; i < lengJugada; i++)
+            {
+                Console.WriteLine(jugada[i]);
+            }
+
+            bolillero.regresarBolillasSacadas();
+
+            Console.WriteLine("Bolilla:");
+
+            Console.WriteLine(bolillero.sacarBolilla());
+
+            bolillero.regresarBolillasSacadas();
+
+            //Console.Write("Ingrese la cantidad de veces a jugar:");
+            //int vecesAJugar = Convert.ToInt32(Console.ReadLine());
+            //Console.WriteLine("Cantidad de veces que la jugada salió: {0}", bolillero.jugarNVeces(jugada, vecesAJugar));
+
+            //bolillero.regresarBolillasSacadas();
+
+            //for (int i = 0; i < bolillero.bolillasLista.Count; i++)
             //{
-            //    Console.WriteLine(jugada[i]);
+            //    Console.WriteLine(bolillero.bolillasLista[i]);
             //}
+            List<int> jugada2 = new List<int>();
 
-            //bolillero.regresarBolillasSacadas();
+            Console.Write("Ingrese su jugada:");
+            for (int i = 0; i < lengJugada; i++)
+            {
+                jugada2.Add(Convert.ToInt32(Console.ReadLine()));
+            }
 
-            //Console.WriteLine("Bolilla:");
+            Console.Write("Ingrese la cantidad de simulaciones: ");
+            int cantSimulaciones = Convert.ToInt32(Console.ReadLine());
 
-            //Console.WriteLine(bolillero.sacarBolilla());
-
-            //bolillero.regresarBolillasSacadas();
-
-            ////Console.Write("Ingrese la cantidad de veces a jugar:");
-            ////int vecesAJugar = Convert.ToInt32(Console.ReadLine());
-            ////Console.WriteLine("Cantidad de veces que la jugada salió: {0}", bolillero.jugarNVeces(jugada, vecesAJugar));
-
-            ////bolillero.regresarBolillasSacadas();
-
-            ////for (int i = 0; i < bolillero.bolillasLista.Count; i++)
-            ////{
-            ////    Console.WriteLine(bolillero.bolillasLista[i]);
-            ////}
-
-            //Console.Write("Ingrese la cantidad de simulaciones: ");
-            //int cantSimulaciones = Convert.ToInt32(Console.ReadLine());
-
-            //simulacion.simularSinHilos(bolillero, jugada, cantSimulaciones);
+            simulacion.ResetearCronometro();
+            int resultSinHilos = simulacion.simularSinHilos(bolillero, jugada2, cantSimulaciones);
+            var duracionSinHilos = simulacion.Duracion;
 
             Console.Write("Ingrese la cantidad de hilos: ");
             int cantHilos = Convert.ToInt32(Console.ReadLine());
@@ -58,7 +67,12 @@ namespace BolilleroConsola
             Console.Write("Ingrese la cantidad de simulaciones: ");
             int cantSimulacionesHilos = Convert.ToInt32(Console.ReadLine());
 
-            simulacion.simularConHilos(bolillero, jugada, cantSimulacionesHilos, cantHilos);
+            simulacion.ResetearCronometro();
+            int resultConHilos = simulacion.simularConHilos(bolillero, jugada2, cantSimulacionesHilos, cantHilos);
+            var duracionConHilos = simulacion.Duracion;
+
+            Console.WriteLine($"La simulación sin hilo lo obtuvo en {duracionSinHilos}, y acertó {resultSinHilos}");
+            Console.WriteLine($"La simulación con hilo lo obtuvo en {duracionConHilos}, y acertó {resultConHilos}");
         }
     }
 }

@@ -34,8 +34,6 @@ namespace BolilleroBiblioteca
                 tareas[i] = Task.Run(() => clon.jugarNVeces(jugada, simulacionesPorHilo));
             }
 
-            Array.ForEach(tareas, t => t.Start());
-
             Task<int>.WaitAll(tareas);
 
             return tareas.Sum(t => t.Result);
