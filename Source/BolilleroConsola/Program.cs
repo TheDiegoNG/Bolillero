@@ -1,12 +1,13 @@
 ﻿using System;
 using BolilleroBiblioteca;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BolilleroConsola
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Simulacion simulacion = new Simulacion();
             Console.Write("Ingrese la cantidad de bolillas que tiene el bolillero:");
@@ -71,8 +72,17 @@ namespace BolilleroConsola
             int resultConHilos = simulacion.simularConHilos(bolillero, jugada2, cantSimulacionesHilos, cantHilos);
             var duracionConHilos = simulacion.Duracion;
 
+            
             Console.WriteLine($"La simulación sin hilo lo obtuvo en {duracionSinHilos}, y acertó {resultSinHilos}");
             Console.WriteLine($"La simulación con hilo lo obtuvo en {duracionConHilos}, y acertó {resultConHilos}");
+
+            List<int> jugada3 = bolillero.sacarJugada();
+
+            simulacion.ResetearCronometro();
+            var resultConHilosAsync = await simulacion.simularConHilosAsync(bolillero, jugada3, cantSimulacionesHilos, cantHilos);
+            var duracionConHilosAsync = simulacion.Duracion;
+
+            Console.WriteLine($"La simulación con hilo asincrónica lo obtuvo en {duracionConHilosAsync}, y acertó {resultConHilosAsync}");
         }
     }
 }

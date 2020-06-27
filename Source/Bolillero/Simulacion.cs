@@ -38,5 +38,26 @@ namespace BolilleroBiblioteca
 
             return tareas.Sum(t => t.Result);
         }
+
+        public async Task<int> simularConHilosAsync(Bolillero bolillero, List<int> jugada, int cantidadSimulaciones, int cantidadHilos)
+        {
+            Task<int>[] tareas = new Task<int>[cantidadHilos];
+
+            int simResto = cantidadSimulaciones % cantidadHilos;
+            int simulacionesPorHilo = Convert.ToInt32(cantidadSimulaciones / cantidadHilos);
+
+            Bolillero clonResto = (Bolillero)bolillero.Clone();
+            tareas[0] = Task.Run(() => clonResto.jugarNVeces(jugada, simulacionesPorHilo + simResto));
+
+            for (int i = 1; i < cantidadHilos; i++)
+            {
+                Bolillero clon = (Bolillero)bolillero.Clone();
+                tareas[i] = Task.Run(() => clon.jugarNVeces(jugada, simulacionesPorHilo));
+            }
+
+            await Task.WhenAll(tareas);
+
+            return tareas.Sum(t => t.Result);
+        }
     }
 }
