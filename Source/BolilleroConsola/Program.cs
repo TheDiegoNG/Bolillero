@@ -83,6 +83,11 @@ namespace BolilleroConsola
             var duracionConHilosAsync = simulacion.Duracion;
 
             Console.WriteLine($"La simulación con hilo asincrónica lo obtuvo en {duracionConHilosAsync}, y acertó {resultConHilosAsync}");
+
+            var resultConParallelAsync = await simulacion.simularConHilosAsync(bolillero, jugada3, cantSimulacionesHilos, cantHilos);
+            var duracionConParallelAsync = simulacion.Duracion;
+
+            Console.WriteLine($"La simulación con paralelismo lo obtuvo en {duracionConParallelAsync}, y acertó {resultConParallelAsync}");
         }
     }
 }

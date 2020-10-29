@@ -15,6 +15,7 @@ namespace BolilleroBiblioteca
             ResetearCronometro();
         }
         public void ResetearCronometro() => FechaHora = DateTime.Now;
+        public List<Bolillero> Bolilleros { get; set; }
         public int simularSinHilos(Bolillero bolillero, List<int> jugada, int cantSimulaciones) 
             => bolillero.jugarNVeces(jugada, cantSimulaciones);
 
@@ -59,5 +60,21 @@ namespace BolilleroBiblioteca
 
             return tareas.Sum(t => t.Result);
         }
+        public async Task<int> simularParallelAsync(Bolillero bolillero, List<int> jugada, int cantidadSimulaciones, int cantidadHilos)
+        {
+            
+            Task<int>[] tareas = new Task<int>[cantidadHilos];
+
+            int simResto = cantidadSimulaciones % cantidadHilos;
+            int simulacionesPorHilo = Convert.ToInt32(cantidadSimulaciones / cantidadHilos);
+
+            Bolillero clonResto = (Bolillero)bolillero.Clone();
+            
+            await Task.Run(
+                () => Parallel.ForEach(Bolilleros, boli => boli.jugarNVeces(jugada, cantidadHilos))
+            );
+            return 0;
+        }
+
     }
 }
