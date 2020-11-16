@@ -22,17 +22,25 @@ namespace BolilleroBiblioteca
         public int simularConHilos(Bolillero bolillero, List<int> jugada, int cantidadSimulaciones, int cantidadHilos)
         {
             Task<int>[] tareas = new Task<int>[cantidadHilos];
-
+            var restos = new byte[cantidadHilos];
             int simResto = cantidadSimulaciones % cantidadHilos;
             int simulacionesPorHilo = Convert.ToInt32(cantidadSimulaciones / cantidadHilos);
 
-            Bolillero clonResto = (Bolillero)bolillero.Clone();
-            tareas[0] = Task.Run(() => clonResto.jugarNVeces(jugada, simulacionesPorHilo + simResto));
+            for (int i = 0; i < simResto; i++)
+            {
+                restos[i] = 1;
+            }
 
-            for (int i = 1; i < cantidadHilos; i++)
+            for (int i = simResto; i < cantidadHilos; i++)
+            {
+                restos[i] = 0;
+            }
+
+            for (int i = 0; i < cantidadHilos; i++)
             {
                 Bolillero clon = (Bolillero)bolillero.Clone();
-                tareas[i] = Task.Run(() => clon.jugarNVeces(jugada, simulacionesPorHilo));
+                Console.WriteLine($"{i}");
+                tareas[i] = Task.Run(() => clon.jugarNVeces(jugada, simulacionesPorHilo + restos[i]));
             }
 
             Task<int>.WaitAll(tareas);
@@ -43,17 +51,24 @@ namespace BolilleroBiblioteca
         public async Task<int> simularConHilosAsync(Bolillero bolillero, List<int> jugada, int cantidadSimulaciones, int cantidadHilos)
         {
             Task<int>[] tareas = new Task<int>[cantidadHilos];
-
+            var restos = new byte[cantidadHilos];
             int simResto = cantidadSimulaciones % cantidadHilos;
             int simulacionesPorHilo = Convert.ToInt32(cantidadSimulaciones / cantidadHilos);
 
-            Bolillero clonResto = (Bolillero)bolillero.Clone();
-            tareas[0] = Task.Run(() => clonResto.jugarNVeces(jugada, simulacionesPorHilo + simResto));
+            for (int i = 0; i < simResto; i++)
+            {
+                restos[i] = 1;
+            }
 
-            for (int i = 1; i < cantidadHilos; i++)
+            for (int i = simResto; i < cantidadHilos; i++)
+            {
+                restos[i] = 0;
+            }
+
+            for (int i = 0; i < cantidadHilos; i++)
             {
                 Bolillero clon = (Bolillero)bolillero.Clone();
-                tareas[i] = Task.Run(() => clon.jugarNVeces(jugada, simulacionesPorHilo));
+                tareas[i] = Task.Run(() => clon.jugarNVeces(jugada, simulacionesPorHilo + restos[i]));
             }
 
             await Task.WhenAll(tareas);
@@ -64,16 +79,33 @@ namespace BolilleroBiblioteca
         {
             
             Task<int>[] tareas = new Task<int>[cantidadHilos];
-
+            var resultados = new int[cantidadHilos];
+            var restos = new byte[cantidadHilos];
             int simResto = cantidadSimulaciones % cantidadHilos;
             int simulacionesPorHilo = Convert.ToInt32(cantidadSimulaciones / cantidadHilos);
 
-            Bolillero clonResto = (Bolillero)bolillero.Clone();
+            for (int i = 0; i < simResto; i++)
+            {
+                restos[i] = 1;
+            }
+
+            for (int i = simResto; i < cantidadHilos; i++)
+            {
+                restos[i] = 0;
+            }
+                
+            await Task.Run(() =>
+                Parallel.For(0,
+                    cantidadHilos,
+                    i =>
+                        {
+                            Bolillero clon = (Bolillero)bolillero.Clone();
+                            resultados[i] = clon.jugarNVeces(jugada, simulacionesPorHilo + restos[i]);
+                        }
+                    )
+                );
             
-            await Task.Run(
-                () => Parallel.ForEach(Bolilleros, boli => boli.jugarNVeces(jugada, cantidadHilos))
-            );
-            return 0;
+            return resultados.Sum();
         }
 
     }

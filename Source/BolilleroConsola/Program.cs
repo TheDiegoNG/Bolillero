@@ -16,26 +16,10 @@ namespace BolilleroConsola
             Console.Write("Ingrese la cantidad de bolillas en una Jugada: ");
             int lengJugada = Convert.ToInt32(Console.ReadLine());
 
-            Bolillero bolillero = new Bolillero(cantBolillas, lengJugada);
+            Bolillero bolillero = new Bolillero(cantBolillas);
           
             bolillero.llenarBolillero();
 
-            List<int> jugada = bolillero.sacarJugada();
-
-            Console.WriteLine("Jugada:");
-
-            for (int i = 0; i < lengJugada; i++)
-            {
-                Console.WriteLine(jugada[i]);
-            }
-
-            bolillero.regresarBolillasSacadas();
-
-            Console.WriteLine("Bolilla:");
-
-            Console.WriteLine(bolillero.sacarBolilla());
-
-            bolillero.regresarBolillasSacadas();
 
             //Console.Write("Ingrese la cantidad de veces a jugar:");
             //int vecesAJugar = Convert.ToInt32(Console.ReadLine());
@@ -65,26 +49,24 @@ namespace BolilleroConsola
             Console.Write("Ingrese la cantidad de hilos: ");
             int cantHilos = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Ingrese la cantidad de simulaciones: ");
-            int cantSimulacionesHilos = Convert.ToInt32(Console.ReadLine());
 
             simulacion.ResetearCronometro();
-            int resultConHilos = simulacion.simularConHilos(bolillero, jugada2, cantSimulacionesHilos, cantHilos);
+            int resultConHilos = simulacion.simularConHilos(bolillero, jugada2, cantSimulaciones, cantHilos);
             var duracionConHilos = simulacion.Duracion;
 
             
             Console.WriteLine($"La simulación sin hilo lo obtuvo en {duracionSinHilos}, y acertó {resultSinHilos}");
             Console.WriteLine($"La simulación con hilo lo obtuvo en {duracionConHilos}, y acertó {resultConHilos}");
 
-            List<int> jugada3 = bolillero.sacarJugada();
+            List<int> jugada3 = bolillero.sacarJugada(lengJugada);
 
             simulacion.ResetearCronometro();
-            var resultConHilosAsync = await simulacion.simularConHilosAsync(bolillero, jugada3, cantSimulacionesHilos, cantHilos);
+            var resultConHilosAsync = await simulacion.simularConHilosAsync(bolillero, jugada3, cantSimulaciones, cantHilos);
             var duracionConHilosAsync = simulacion.Duracion;
 
             Console.WriteLine($"La simulación con hilo asincrónica lo obtuvo en {duracionConHilosAsync}, y acertó {resultConHilosAsync}");
 
-            var resultConParallelAsync = await simulacion.simularConHilosAsync(bolillero, jugada3, cantSimulacionesHilos, cantHilos);
+            var resultConParallelAsync = await simulacion.simularConHilosAsync(bolillero, jugada3, cantSimulaciones, cantHilos);
             var duracionConParallelAsync = simulacion.Duracion;
 
             Console.WriteLine($"La simulación con paralelismo lo obtuvo en {duracionConParallelAsync}, y acertó {resultConParallelAsync}");

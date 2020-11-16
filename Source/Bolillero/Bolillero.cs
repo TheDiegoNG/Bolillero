@@ -13,18 +13,15 @@ namespace BolilleroBiblioteca
 
         public List<int> bolillasSacadas { get; set; }
 
-        public int lengJugada { get; set; }
-
         public int cantBolillas { get; set; }
 
         Random numRand = new Random();
 
-        public Bolillero(int cantBolas, int largJugada)
+        public Bolillero(int cantBolas)
         {
             bolillasLista = new List<int>();
             bolillasSacadas = new List<int>();
             cantBolillas = cantBolas;
-            lengJugada = largJugada;
             llenarBolillero();
         }
 
@@ -45,7 +42,7 @@ namespace BolilleroBiblioteca
         public bool verificarJugada(List<int> jugada, List<int> jugada2) 
             => jugada.SequenceEqual(jugada2);
        
-        public List<int> sacarJugada()
+        public List<int> sacarJugada(int lengJugada)
         {
             List<int> Jugada = new List<int>();
             for (int i = 0; i < lengJugada; i++)
@@ -68,7 +65,7 @@ namespace BolilleroBiblioteca
             List<int> cadenaNum = new List<int>();
             for (int i = 0; i < cantVeces; i++)
             {
-                cadenaNum = sacarJugada();
+                cadenaNum = sacarJugada(jugada.Count);
                 if (verificarJugada(jugada, cadenaNum))
                 {
                     vecesJugada++;
@@ -78,7 +75,7 @@ namespace BolilleroBiblioteca
             return vecesJugada;
         }
 
-        public object Clone() => new Bolillero(cantBolillas, lengJugada);
+        public object Clone() => new Bolillero(cantBolillas);
 
 
     }
