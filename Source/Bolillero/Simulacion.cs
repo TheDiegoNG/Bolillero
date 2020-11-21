@@ -39,8 +39,8 @@ namespace BolilleroBiblioteca
             for (int i = 0; i < cantidadHilos; i++)
             {
                 Bolillero clon = (Bolillero)bolillero.Clone();
-                Console.WriteLine($"{i}");
-                tareas[i] = Task.Run(() => clon.jugarNVeces(jugada, simulacionesPorHilo + restos[i]));
+                var simulacionesXHiloConResto = simulacionesPorHilo + restos[i];
+                tareas[i] = Task.Run(() => clon.jugarNVeces(jugada, simulacionesXHiloConResto));
             }
 
             Task<int>.WaitAll(tareas);
@@ -68,7 +68,8 @@ namespace BolilleroBiblioteca
             for (int i = 0; i < cantidadHilos; i++)
             {
                 Bolillero clon = (Bolillero)bolillero.Clone();
-                tareas[i] = Task.Run(() => clon.jugarNVeces(jugada, simulacionesPorHilo + restos[i]));
+                var simulacionesXHiloConResto = simulacionesPorHilo + restos[i];
+                tareas[i] = Task.Run(() => clon.jugarNVeces(jugada, simulacionesXHiloConResto));
             }
 
             await Task.WhenAll(tareas);
@@ -100,7 +101,8 @@ namespace BolilleroBiblioteca
                     i =>
                         {
                             Bolillero clon = (Bolillero)bolillero.Clone();
-                            resultados[i] = clon.jugarNVeces(jugada, simulacionesPorHilo + restos[i]);
+                            var simulacionesXHiloConResto = simulacionesPorHilo + restos[i];
+                            tareas[i] = Task.Run(() => clon.jugarNVeces(jugada, simulacionesXHiloConResto));
                         }
                     )
                 );
